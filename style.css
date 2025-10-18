@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+h1 {
+    color: #333;
+    text-align: center;
+}
+h2 {
+    color: #555;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+.project {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.project h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+}
+.project a {
+    color: #0366d6;
+    text-decoration: none;
+}
+.project a:hover {
+    text-decoration: underline;
+}
+.project p {
+    color: #666;
+    margin: 5px 0;
+}
+.stats {
+    font-size: 0.9em;
+    color: #888;
+}
