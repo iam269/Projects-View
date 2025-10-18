@@ -5,10 +5,21 @@ async function fetchProjects() {
         let hasMore = true;
 
         while (hasMore) {
-            const response = await fetch(`https://api.github.com/users/iam269/repos?sort=updated&per_page=100&page=${page}`);
+            const response = await fetch(`https://api.github.com/users/iam269/repos?sort=updated&per_page=100&page=${page}`, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'User-Agent': 'GitHub-Projects-Viewer/1.0'
+                }
+            });
+            if (!response.ok) {
+                if (response.status === 403) {
+                    throw new Error(`GitHub API rate limit exceeded. Please try again later or use a personal access token.`);
+                }
+                throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+            }
             const repos = await response.json();
 
-            if (repos.length === 0) {
+            if (!Array.isArray(repos) || repos.length === 0) {
                 hasMore = false;
             } else {
                 allRepos.push(...repos);
@@ -18,10 +29,10 @@ async function fetchProjects() {
 
         const webProjectsDiv = document.getElementById('web-projects');
         const gameProjectsDiv = document.getElementById('game-projects');
-        const appProjectsDiv = document.getElementById('app-projects');
+        const mobileProjectsDiv = document.getElementById('mobile-projects');
         const otherProjectsDiv = document.getElementById('other-projects');
 
-        let webCount = 0, gameCount = 0, appCount = 0, otherCount = 0;
+        let webCount = 0, gameCount = 0, mobileCount = 0, otherCount = 0;
 
         allRepos.forEach((repo) => {
             const projectDiv = document.createElement('div');
@@ -37,16 +48,16 @@ async function fetchProjects() {
             const descLower = (repo.description || '').toLowerCase();
 
             let targetDiv, count, githubPagesLink = '';
-            if (nameLower.includes('web') || descLower.includes('web') || language === 'HTML' || language === 'CSS' || language === 'JavaScript') {
+            if (nameLower.includes('web') || descLower.includes('web') || ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Vue', 'React', 'Angular', 'PHP', 'Ruby', 'Go', 'Rust', 'Svelte', 'Next.js', 'Nuxt.js', 'Express', 'Django', 'Flask', 'Laravel', 'Symfony'].includes(language)) {
                 targetDiv = webProjectsDiv;
                 count = ++webCount;
                 githubPagesLink = `<p><a href="https://iam269.github.io/${repo.name}" target="_blank">View GitHub Pages</a></p>`;
-            } else if (nameLower.includes('game') || descLower.includes('game') || language === 'C#' || language === 'Unity') {
+            } else if (nameLower.includes('game') || descLower.includes('game') || ['C#', 'Unity', 'Python', 'Lua', 'Haxe', 'GDScript', 'C', 'Assembly'].includes(language)) {
                 targetDiv = gameProjectsDiv;
                 count = ++gameCount;
-            } else if (nameLower.includes('app') || descLower.includes('app') || language === 'Java' || language === 'Kotlin') {
-                targetDiv = appProjectsDiv;
-                count = ++appCount;
+            } else if (nameLower.includes('mobile') || descLower.includes('mobile') || ['Java', 'Kotlin', 'Swift', 'Dart', 'Objective-C', 'React Native', 'Flutter', 'Ionic', 'Xamarin', 'C++'].includes(language)) {
+                targetDiv = mobileProjectsDiv;
+                count = ++mobileCount;
             } else {
                 targetDiv = otherProjectsDiv;
                 count = ++otherCount;
@@ -73,7 +84,9 @@ async function fetchProjects() {
         totalDiv.innerHTML = `<p>Total Projects: ${totalProjects}</p>`;
     } catch (error) {
         console.error('Error fetching projects:', error);
-        document.body.innerHTML = '<p>Error loading projects. Please try again later.</p>';
+        const errorDiv = document.createElement('div');
+        errorDiv.innerHTML = `<p>Error loading projects: ${error.message}. Please check the console for details.</p>`;
+        document.body.appendChild(errorDiv);
     }
 }
 
