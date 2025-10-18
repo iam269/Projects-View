@@ -40,3 +40,9 @@ h2 {
     font-size: 0.9em;
     color: #888;
 }
+#total-projects {
+    text-align: center;
+    font-weight: bold;
+    color: blue;
+    margin-top: 20px;
+}

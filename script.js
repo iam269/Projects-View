@@ -67,6 +67,10 @@ async function fetchProjects() {
 
             targetDiv.appendChild(projectDiv);
         });
+
+        const totalProjects = allRepos.length;
+        const totalDiv = document.getElementById('total-projects');
+        totalDiv.innerHTML = `<p>Total Projects: ${totalProjects}</p>`;
     } catch (error) {
         console.error('Error fetching projects:', error);
         document.body.innerHTML = '<p>Error loading projects. Please try again later.</p>';
