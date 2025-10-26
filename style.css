@@ -4,15 +4,27 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
+    transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
 }
 h1 {
     color: #333;
     text-align: center;
 }
+body.dark-mode h1 {
+    color: #ffffff;
+}
 h2 {
     color: #555;
     border-bottom: 2px solid #ddd;
     padding-bottom: 5px;
+}
+body.dark-mode h2 {
+    color: #cccccc;
+    border-bottom: 2px solid #444;
 }
 .project {
     background: white;
@@ -20,6 +32,11 @@ h2 {
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode .project {
+    background: #1e1e1e;
+    color: #ffffff;
 }
 .project h2 {
     margin: 0 0 10px 0;
@@ -29,6 +46,9 @@ h2 {
     color: #0366d6;
     text-decoration: none;
 }
+body.dark-mode .project a {
+    color: #58a6ff;
+}
 .project a:hover {
     text-decoration: underline;
 }
@@ -36,9 +56,15 @@ h2 {
     color: #666;
     margin: 5px 0;
 }
+body.dark-mode .project p {
+    color: #cccccc;
+}
 .stats {
     font-size: 0.9em;
     color: #888;
+}
+body.dark-mode .stats {
+    color: #aaaaaa;
 }
 .section {
     display: inline-block;
@@ -65,4 +91,32 @@ h2 {
     color: blue;
     margin-top: 20px;
     clear: both;
+}
+body.dark-mode #total-projects {
+    color: #58a6ff;
+}
+
+#dark-mode-toggle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#toggle-dark-mode {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+#toggle-dark-mode:hover {
+    background-color: #e0e0e0;
+}
+body.dark-mode #toggle-dark-mode {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+body.dark-mode #toggle-dark-mode:hover {
+    background-color: #555;
 }

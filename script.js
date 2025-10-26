@@ -1,3 +1,21 @@
+function initDarkMode() {
+    const toggleButton = document.getElementById('toggle-dark-mode');
+    const body = document.body;
+
+    // Check for saved dark mode preference
+    const darkMode = localStorage.getItem('darkMode') === 'true';
+    if (darkMode) {
+        body.classList.add('dark-mode');
+    }
+
+    // Toggle dark mode on button click
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+    });
+}
+
 async function fetchProjects() {
     try {
         const allRepos = [];
@@ -90,4 +108,5 @@ async function fetchProjects() {
     }
 }
 
+initDarkMode();
 fetchProjects();

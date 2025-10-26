@@ -9,6 +9,7 @@ This is a web application that displays GitHub projects by user iam269, categori
 - Displays project details including stars, forks, language, and last update
 - Provides links to live sites and GitHub Pages for web projects
 - Shows total number of projects at the bottom
+- Dark mode toggle with local storage persistence
 
 ## Live Site
 
