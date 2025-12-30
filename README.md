@@ -1,6 +1,6 @@
 # GitHub Projects Showcase
 
-This is a web application that displays GitHub projects by user iam269, categorized into Web Projects, Game Projects, App Projects, and Other Projects.
+This is a 🌐 web application that displays 📂 GitHub projects by user 👤 iam269, categorized into 🌐 Web Projects, 🎮 Game Projects, 📱 App Projects, and 🗂️ Other Projects.
 
 ## Features
 
