@@ -13,7 +13,7 @@ This is a 🌐 web application that displays 📂 GitHub projects by user 👤 i
 
 ## Live Site
 
-View the live site: [https://iam269.github.io/Projects-View](https://iam269.github.io/Projects-View)
+View the live site: [https://itsiamdev.github.io/Projects-View/](https://itsiamdev.github.io/Projects-View/)
 
 ## Technologies Used
 
